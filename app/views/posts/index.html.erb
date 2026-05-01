@@ -1,7 +1,19 @@
 <% if @posts %>
     <% @posts.each do |post|%>
-    <div>
+     <div>
+        <% if user_signed_in? %>
+            <p><%= @users.find_by(id: post.user).name %></p>
+        <% else %>
+            <p>anonymous user</p>
+        <% end %>
         <p><%= post.title %></p>
         <p><%= post.body %></p>
-    </div>
+     </div>
+    <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+    <%= button_to "Log out", destroy_user_session_path, method: :delete%>
+<% else %>
+    <%= link_to "Sign in/sign up", new_user_session_path %>
 <% end %>
