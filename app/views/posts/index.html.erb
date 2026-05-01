@@ -4,7 +4,7 @@
         <% if user_signed_in? %>
             <p><%= @users.find_by(id: post.user).name %></p>
         <% else %>
-            <p>anonymous user</p>
+            <p>Anonymous user</p>
         <% end %>
         <p><%= post.title %></p>
         <p><%= post.body %></p>
@@ -14,6 +14,7 @@
 
 <% if user_signed_in? %>
     <%= button_to "Log out", destroy_user_session_path, method: :delete%>
+    <%= link_to "create post", new_post_path %>
 <% else %>
     <%= link_to "Sign in/sign up", new_user_session_path %>
 <% end %>
