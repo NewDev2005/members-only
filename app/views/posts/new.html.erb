@@ -1,1 +1,17 @@
-<h1>hello rails world</h1>
+
+<%= form_with model: @post do |form|%>
+    <div>
+        <div>
+            <%= form.label :title %>
+        </div>
+        <%= form.text_field :title, minlength: 4, size: 20%>
+    </div>
+
+    <div>
+        <div>
+            <%= form.label :body %>
+        </div>
+        <%= form.textarea :body, size: "30", minlength: 6%>
+    </div>
+    <%= form.submit value: "create post"%>
+<% end %>
