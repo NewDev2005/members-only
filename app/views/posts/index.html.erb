@@ -8,6 +8,9 @@
         <% end %>
         <p><%= post.title %></p>
         <p><%= post.body %></p>
+        <% if user_signed_in? && current_user == @users.find_by(id: post.user)%>
+            <%= link_to "Destroy", post_path(id: post.id), method: :delete%>
+        <% end %>
      </div>
     <% end %>
 <% end %>
