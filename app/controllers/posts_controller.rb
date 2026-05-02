@@ -19,6 +19,10 @@ class PostsController < ApplicationController
     @users = User.all
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy!
