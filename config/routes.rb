@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,6 +10,12 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "posts#index"
-  resources :posts, only: [ :new, :create, :index, :destroy, :edit ]
+  scope "/clubhouse" do
+    resources :posts, only: [ :new, :create, :index, :destroy, :edit, :update ]
+    get "posts/:id", to: "posts#destroy"
+    devise_for :users
+    root "posts#index"
+  end
+  # root "posts#index"
+  # resources :posts, only: [ :new, :create, :index, :destroy, :edit, :update ]
 end
