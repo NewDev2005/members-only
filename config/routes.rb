@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   scope "/clubhouse" do
     resources :posts, only: [ :new, :create, :index, :destroy, :edit, :update ]
-    get "posts/:id", to: "posts#destroy"
     devise_for :users
     root "posts#index"
   end
